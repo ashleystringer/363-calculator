@@ -1,0 +1,19 @@
+project (assignment3){
+	exename = assignment3
+	install = .
+
+	specific (make, gnuace){
+		compile_flags += -std=c++11
+	}
+	
+	Source_Files{
+		Driver.cpp
+	}
+	
+	Template_Files{
+		Array_Base.cpp
+		Fixed_Array.cpp
+		Stack.cpp
+		Queue.cpp
+	}
+}
