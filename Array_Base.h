@@ -31,7 +31,7 @@ class Array_Base{
 		T * data_;
 		size_t cur_size_;
 		size_t max_size_;
-}
+};
 
 #include "Array_Base.inl";
 #include "Array_Base.cpp";

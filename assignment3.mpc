@@ -15,5 +15,6 @@ project (assignment3){
 		Fixed_Array.cpp
 		Stack.cpp
 		Queue.cpp
+		Calculator.cpp
 	}
 }
