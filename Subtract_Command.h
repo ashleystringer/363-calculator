@@ -1,4 +1,4 @@
-class Subtract_Command{
+class Subtract_Command : public Binary_Op_Command{
 
 };
 

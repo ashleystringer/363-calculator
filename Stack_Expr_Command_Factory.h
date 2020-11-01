@@ -1,4 +1,4 @@
-class Stack_Expr_Command_Factory{
+class Stack_Expr_Command_Factory : public Expr_Command_Factory{
 	public:
 		Stack_Expr_Command_Factory(Stack <int> & stack);
 		virtual Number_Command * create_number_command (int num);
