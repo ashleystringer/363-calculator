@@ -19,6 +19,7 @@ class Stack : public Array_Base<T>{
 		void clear (void);
 	private:
 		size_t top_;
+		size_t testSize;
 };
 #include "Stack.inl"
 #include "Stack.cpp"
