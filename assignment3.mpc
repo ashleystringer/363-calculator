@@ -15,6 +15,8 @@ project (assignment3){
 		Fixed_Array.cpp
 		Stack.cpp
 		Queue.cpp
+		Expr_Command_Factory.cpp
+		Stack_Expr_Command_Factory.cpp
 		Calculator.cpp
 	}
 }

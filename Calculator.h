@@ -4,7 +4,7 @@
 #include "Stack.h";
 #include "Command.h";
 #include "Expr_Command_Factory.h"; 
-//#include "Stack_Expr_Command_Factory.h";
+#include "Stack_Expr_Command_Factory.h";
 
 #ifndef _CS507_CALCULATOR_H
 #define _CS507_CALCULATOR_H
