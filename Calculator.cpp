@@ -13,27 +13,23 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 	std::cout << "Infix to Postfix" << std::endl;
 	Command * cmd = 0;
 	Stack<Command *> temp;
-	/*while(!input.eof()){
+	cmd = factory.create_add_command();
+	while(!input.eof()){
 		input >> token;
-		std::cout << "Testing input.eof" << std::endl;
+		std::cout << token << std::endl;
 		if(token == "+"){
 			//cmd = factory.create_add_command();	
 		}
-	}*/
-	/*std::istringstream input(infix); //Error
-	std::string token;
-	Command * cmd = 0;
-	Stack<Command *> temp;
-	while(!input.eof){
-		input >> token;
-		if(token == "+"){
-			std::cout << "+" << std::endl;
-			//cmd = factory.create_add_command();
-		}else if(token == "-"){
-			std::cout << "" << std::endl;
-			//cmd = factory.create_subtract_command();
+		else if(token == "-"){
+		}else if(token == "*"){
+			
+		}else if(token == "("){
+
+		}else{
+			//append to postfix expression
 		}
-	}*/
+
+	}
 	return true;
 }
 void Calculator::run(){

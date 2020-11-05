@@ -3,6 +3,7 @@
 #include "Array.h";
 #include "Stack.h";
 #include "Command.h";
+#include "Binary_Op_Command.h";
 #include "Expr_Command_Factory.h"; 
 #include "Stack_Expr_Command_Factory.h";
 

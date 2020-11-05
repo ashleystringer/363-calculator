@@ -2,8 +2,8 @@
 #define _COMMAND_H_
 
 class Command{
-	bool execute();
-	void evaluate();
+	virtual bool execute() = 0;
+	virtual void evaluate() = 0;
 };
 
 #include "Command.cpp"

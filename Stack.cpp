@@ -38,7 +38,7 @@ void Stack <T>::push (T element)
 
 // pop
 template <typename T>
-void Stack <T>::pop (void)
+T Stack <T>::pop (void)
 {
  	top_--;
 	if(top_ >= 0){
@@ -46,6 +46,7 @@ void Stack <T>::pop (void)
 		top_++;
 		throw std::underflow_error("Error - Stack is empty");
  	}
+	return Array_Base<T>::data_[top_];
 }
 
 // operator =

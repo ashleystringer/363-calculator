@@ -12,7 +12,7 @@ class Stack : public Array_Base<T>{
 		Stack (const Stack & s);
 		const Stack & operator = (const Stack & rhs);
 		void push (T element);
-		void pop ();
+		T pop ();
 		T top (void) const;
 		bool is_empty (void) const;
 		size_t size (void) const;
