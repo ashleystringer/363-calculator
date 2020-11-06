@@ -7,6 +7,7 @@ class Add_Command : public Binary_Op_Command{
 	public:
 		Add_Command();
 		virtual int evaluate(int n1, int n2);
+		virtual int precedence();
 };
 
 #include "Add_Command.cpp";
