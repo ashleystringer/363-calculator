@@ -1,3 +1,8 @@
+// Honor Pledge: ashstrin
+//
+//I pledge that I have neither given nor received any help
+//on this assignment.
+
 #include <iostream>;
 #include "Calculator.h";
 #include <sstream>;
@@ -5,7 +10,9 @@
 Calculator::Calculator(){
 
 }
+Calculator::~Calculator(){
 
+}
 bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factory & factory, Array<Command *> & postfix){
 	std::istringstream input(infix);
 	std::string token;
@@ -47,15 +54,18 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 	return true;
 }
 void Calculator::run(){
-	std::string test = "5 + 4";
-	std::cout << "Testing run method " << test << std::endl;
+	std::cout << "this->input " << this->input<< std::endl;
 	Stack<int> result;		
 	Array<Command *> postfix;
 	Stack_Expr_Command_Factory factory;	
-	infix_to_postfix(test, factory, postfix);	
-	/*while(postfix){ //iterate through postfix array
+	//Stack_Expr_Command_Factory factory(result);
+	infix_to_postfix(this->input, factory, postfix);	
+	/*while(postfix){ //iterate through commands in postfix array
 		
 	}*/
 	//int res = result.top();	
 
+}
+void Calculator::set_expression(std::string input){
+	this->input = input; 	
 }

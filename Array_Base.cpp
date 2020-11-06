@@ -1,3 +1,8 @@
+// Honor Pledge: ashstrin
+//
+// I pledge that I have neither given nor receieved any help
+//on this assignment.
+
 #include "Array_Base.h"
 
 #include <stdexcept>

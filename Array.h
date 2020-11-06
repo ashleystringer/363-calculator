@@ -1,3 +1,8 @@
+// Honor Pledge: ashstrin
+//
+//I pledge that I have neither given nor received any help
+//on this assignment.
+
 #ifndef _ARRAY_H_
 #define _ARRAY_H_
 
