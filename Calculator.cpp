@@ -14,6 +14,8 @@ Calculator::~Calculator(){
 
 }
 bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factory & factory, Array<Command *> & postfix){
+	//** Infix to Postfix conversion is not yet complete **
+	
 	std::istringstream input(infix);
 	std::string token;
 		
@@ -54,14 +56,17 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 	return true;
 }
 void Calculator::run(){
+	// ** Evaluation of commands from infix_to_postfix() is not yet complete **
+
 	std::cout << "this->input " << this->input<< std::endl;
 	Stack<int> result;		
 	Array<Command *> postfix;
 	Stack_Expr_Command_Factory factory;	
 	//Stack_Expr_Command_Factory factory(result);
 	infix_to_postfix(this->input, factory, postfix);	
-	/*while(postfix){ //iterate through commands in postfix array
-		
+	//int posfix_el = 0;
+	/*while(postfix_el < postfix->max_size()){ //iterate through commands in postfix array
+		postfix_el++;	
 	}*/
 	//int res = result.top();	
 
