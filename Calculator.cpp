@@ -25,6 +25,9 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 	Stack<Command *> * temp = new Stack<Command *>(4);
 	int i = -1;		
 	while(!input.eof()){
+        // COMMENT This is an incomplete submisssion. You are not
+        // handling all the required operators.
+        
 		input >> token;
 		i++;
 		std::cout << token << std::endl;
