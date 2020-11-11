@@ -8,6 +8,9 @@ int main(int argc, char * argv []){
 	
 	Calculator * test = new Calculator();
 	char input[50];
+    
+    // COMMENT Your program should loop until QUIT is entered.
+    
 	while(input[0] != 'Q'){
 		std::cout << "Please type in a mathematical expression." << std::endl;
 		std::cin.getline(input, 50);
