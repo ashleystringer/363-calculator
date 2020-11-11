@@ -12,8 +12,7 @@
 class Binary_Op_Command : public Expr_Command{
 	public:
 		bool execute(void);
-		virtual int evaluate(int n1, int n2) const = 0;
-		virtual int precedence() = 0;
+		//virtual int precedence() = 0;
 	private:
 		Stack<int> s_;
 		//int precedence_number; 

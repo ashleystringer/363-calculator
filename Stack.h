@@ -7,6 +7,7 @@
 #define _CS507_STACK_H_
 
 #include <exception>
+#include "Array_Base.h"
 
 template <typename T>
 class Stack : public Array_Base<T>{

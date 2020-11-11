@@ -27,12 +27,16 @@ Stack <T>::Stack (const Stack & stack) : Array_Base<T>(stack)
 template <typename T>
 void Stack <T>::push (T element)
 {
-	 top_++;
+	int test = ((top_ + 1) % Stack<T>::max_size_);
+	top_++;
+	std::cout << "Push - test: " << test << " top_: " << top_ << std::endl;
  	if(top_ < Stack<T>::max_size_){
-		 Array_Base<T>::set(top_, element);
+		Array_Base<T>::set(test, element); //top_
+		
 	 }else{	
-		 top_--;
-		 throw std::overflow_error("Error - Stack is full");
+		std::cout << "Stack is full" << std::endl;
+		top_--;
+		// throw std::overflow_error("Error - Stack is full");
  	}
  }
 
@@ -40,13 +44,16 @@ void Stack <T>::push (T element)
 template <typename T>
 T Stack <T>::pop (void)
 {
- 	top_--;
+	int test = ((top_ + 1) % Stack<T>::max_size_);
 	if(top_ >= 0){
+		top_--;
+		test = ((top_) % Stack<T>::max_size_);		
+		std::cout << "Pop - test: " << test << " top_: " << top_ << std::endl;
 	}else{
 		top_++;
 		throw std::underflow_error("Error - Stack is empty");
  	}
-	return Array_Base<T>::data_[top_];
+	return Array_Base<T>::data_[test]; //top_
 }
 
 // operator =

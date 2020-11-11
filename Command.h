@@ -7,8 +7,8 @@
 #define _COMMAND_H_
 
 class Command{
-	virtual bool execute() = 0;
-	virtual void evaluate() = 0;
+	public:
+		virtual int precedence() = 0;
 };
 
 #include "Command.cpp"

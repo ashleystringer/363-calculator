@@ -20,37 +20,41 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 	std::string token;
 		
 	std::cout << "Infix to Postfix" << std::endl;
-	Command * cmd = 0;
-	Stack<Command *> temp;
+	//Command * cmd = 0;
+	Binary_Op_Command * cmd = 0;
+	Stack<Command *> * temp = new Stack<Command *>(4);
 	int i = -1;		
 	while(!input.eof()){
 		input >> token;
 		i++;
 		std::cout << token << std::endl;
-		if(token == "+"){
-			if(temp.is_empty()){
+		if(token == "+" || token == "-" || token == "*"){
+			if(token == "+"){
 				cmd = factory.create_add_command();
-				//temp.push(cmd);
-			}	
-		}
-		else if(token == "-"){
-			if(temp.is_empty()){
-				/*if(temp.top()){
-
-				}*/
+			}else if(token == "-"){
+				std::cout << "token == '-'" << std::endl;
 				cmd = factory.create_subtract_command();
-				//temp.push(cmd);
 			}
-		}else if(token == "*"){
-			
-		}else if(token == "("){
+			if(temp->is_empty()){
+				std::cout << "is empty" << std::endl;
+			}	
+			std::cout << "cmd->precedence(): " << cmd->precedence() << std::endl;
+			temp->push(cmd);
+			std::cout << "temp->top()->precedence(): " << temp->top()->precedence() << std::endl;	
+			if(temp->is_empty() && (cmd->precedence() > temp->top()->precedence())){
+					//temp->push(cmd);
+			}else{
+				/*while((cmd->precedence() > temp->top()->precedence()) || temp->is_empty()){
+					Command * el = temp.pop();
+					//append el to postfix
+				}*/
+				//temp->push(cmd);
+			}		
+		}else if(token == "(" || token == ")"){
 
 		}else{
-			std::cout << "operand" << std::endl;
-			std::string operand = token;
-			//append to postfix expression
-			//cmd = factory.create_number_command(operand);
-			//posfix.set(i, cmd);
+			//cmd = factory.create_number_command(token);
+			//append cmd to postfix
 		}
 	}
 	return true;

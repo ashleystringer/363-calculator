@@ -20,6 +20,22 @@ int main(int argc, char * argv []){
 		}
 	}
 
+/*	Stack<char> * st = new Stack<char>(4);
+	st->push('d');
+	st->push('q');
+	st->push('p');
+	st->push('s');
+	st->pop();
+	st->pop();
+	st->push('u');
+	st->push('9');
+	st->pop();
+	st->push('I');
+	st->pop();
+	st->pop();
+	st->pop();
+	st->push('n');
+	std::cout << "st->top(): " << st->top() << std::endl; */
 //	delete test;
 	return 0;
 }
