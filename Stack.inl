@@ -14,7 +14,7 @@ template <typename T>
 inline
 bool Stack <T>::is_empty (void) const
 {
-	if(top_ <= 0){
+	if(top_ <= -1){ //top_ <= 0 
 		return true;
 	}
 	return false;

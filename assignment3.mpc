@@ -17,6 +17,9 @@ project (assignment3){
 		Queue.cpp
 		Binary_Op_Command.cpp
 		Add_Command.cpp
+		Subtract_Command.cpp
+		Mult_Command.cpp
+		Div_Command.cpp
 		Expr_Command_Factory.cpp
 		Stack_Expr_Command_Factory.cpp
 		Calculator.cpp

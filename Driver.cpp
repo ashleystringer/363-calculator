@@ -23,7 +23,7 @@ int main(int argc, char * argv []){
 		}
 	}
 
-/*	Stack<char> * st = new Stack<char>(4);
+	/*Stack<char> * st = new Stack<char>(4);
 	st->push('d');
 	st->push('q');
 	st->push('p');
@@ -38,7 +38,7 @@ int main(int argc, char * argv []){
 	st->pop();
 	st->pop();
 	st->push('n');
-	std::cout << "st->top(): " << st->top() << std::endl; */
+	std::cout << "st->top(): " << st->top() << std::endl;*/
 //	delete test;
 	return 0;
 }

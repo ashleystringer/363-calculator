@@ -47,8 +47,9 @@ T Stack <T>::pop (void)
 	int test = ((top_ + 1) % Stack<T>::max_size_);
 	if(top_ >= 0){
 		top_--;
+		std::cout << "pop - top_: " << top_ << std::endl;
 		test = ((top_) % Stack<T>::max_size_);		
-		std::cout << "Pop - test: " << test << " top_: " << top_ << std::endl;
+//		std::cout << "Pop - test: " << test << " top_: " << top_ << std::endl;
 	}else{
 		top_++;
 		throw std::underflow_error("Error - Stack is empty");
