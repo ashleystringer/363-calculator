@@ -20,6 +20,7 @@ project (assignment3){
 		Subtract_Command.cpp
 		Mult_Command.cpp
 		Div_Command.cpp
+		Num_Command.cpp
 		Expr_Command_Factory.cpp
 		Stack_Expr_Command_Factory.cpp
 		Calculator.cpp

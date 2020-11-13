@@ -31,6 +31,6 @@ Div_Command * Stack_Expr_Command_Factory::create_div_command(void){
 	return div;
 }
 Number_Command * Stack_Expr_Command_Factory::create_number_command(int operand){
-	Number_Command * num;
+	Number_Command * num = new Number_Command(operand);
 	return num;
 }

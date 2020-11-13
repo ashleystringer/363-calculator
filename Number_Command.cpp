@@ -1,4 +1,6 @@
-// Honor Pledge: ashstrin
-// 
-//  I pledge that I have neither given nor received any help
-// on this assignment.
+Number_Command::Number_Command(int operand){
+
+}
+int Number_Command::precedence(){
+	return (5);
+}

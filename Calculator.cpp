@@ -17,18 +17,26 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 	//** Infix to Postfix conversion is not yet complete **
 	std::cout << "Infix" << std::endl;	
 	std::istringstream input(infix);
+	std::istringstream input_copy(infix);
 	std::string token;
-		
+	std::string token_copy;	
+
+	int expr_length = 0;
+	while(!input_copy.eof()){
+		input_copy >> token_copy;	
+		expr_length++;
+	}
+
 	//Command * cmd = 0;
 	Binary_Op_Command * cmd = 0;
-	Stack<Command *> * temp = new Stack<Command *>(4);
-	int i = -1;		
+	Stack<Command *> * temp = new Stack<Command *>(expr_length);
+
+	int i = -1;
 	while(!input.eof()){
         // COMMENT This is an incomplete submisssion. You are not
         // handling all the required operators.
         
 		input >> token;
-		//i++;
 		std::cout << token << std::endl;
 		if(token == "+" || token == "-" || token == "*"){
 			i++;
@@ -38,28 +46,26 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 				std::cout << "token == '-'" << std::endl;
 				cmd = factory.create_subtract_command();
 			}else if(token == "*"){
-				//cmd = factory.create_mult_command();
+				cmd = factory.create_mult_command();
 			}else if(token == "/"){
-				//cmd = factory.create_div_command();
+				cmd = factory.create_div_command();
 			}else if(token == "%"){
-
+	
 			}
-			temp->push(cmd);
-			//postfix append(cmd);
-			std::cout << "i: " << i << std::endl;
-			if(i > 0){
+			/*if(i > 0){
 				temp->pop();
-			}
+			}*/
 			
 			if(temp->is_empty() || (cmd->precedence() > temp->pop()->precedence())){
 				temp->push(cmd);
 			}else{
-				/*while((cmd->precedence() < temp->pop()->precedence()) && (!temp->is_empty())){
-					Command el = temp->pop();
-					//append to postfix	
-				}*/		
+				while((cmd->precedence() <= temp->pop()->precedence()) && (!temp->is_empty())){
+					Command * el = temp->pop();
+					postfix.set(i, el);	
+				}		
 				temp->push(cmd);
 			}
+
 		}else if(token == "(" || token == ")"){
 
 		}else{
