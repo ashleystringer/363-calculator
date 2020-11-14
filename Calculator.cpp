@@ -76,7 +76,6 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 		Command * cmd_test = postfix_temp->get(expr_length);
 		//postfix.set(expr_length, cmd_test);		
 	}	
-	//std::cout << "postfix_temp->get(0): " << postfix_temp->get(0)<< std::endl;
 	return true;
 }
 void Calculator::run(){
