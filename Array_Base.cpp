@@ -64,8 +64,8 @@ template <typename T>
 T Array_Base<T>::get (size_t index) const
 {
 	if(index <= cur_size_){
-		std::cout << "cur_size_: " << cur_size_ << std::endl;
-		std::cout << "data_[index]: " << data_[index] << std::endl;
+		//std::cout << "cur_size_: " << cur_size_ << std::endl;
+		//std::cout << "data_[index]: " << data_[index] << std::endl;
 		return data_[index];
 	}else{
 		throw std::out_of_range("Out of range");

@@ -38,7 +38,11 @@ int main(int argc, char * argv []){
 	st->pop();
 	st->pop();
 	st->push('n');
+	st->pop();
+	st->pop();
+	st->pop();
+	st->pop();
+	st->push('r');
 	std::cout << "st->top(): " << st->top() << std::endl;*/
-//	delete test;
 	return 0;
 }

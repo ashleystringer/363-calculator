@@ -27,19 +27,19 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 		expr_length++;
 	}
 
-	//Command * cmd = 0;
+	Number_Command * num_cmd = 0;
 	Binary_Op_Command * cmd = 0;
 	Array<Command *> * postfix_temp = new Array<Command *>(expr_length);
+	//postfix = new Array<Command *>(expr_length);
 	Stack<Command *> * temp = new Stack<Command *>(expr_length);
 	int i = -1;
 	while(!input.eof()){
         // COMMENT This is an incomplete submisssion. You are not
         // handling all the required operators.
-        
+        	i++;
 		input >> token;
 		std::cout << token << std::endl;
-		if(token == "+" || token == "-" || token == "*"){
-			i++;
+		if(token == "+" || token == "-" || token == "*" || token == "/" || token == "%"){
 			if(token == "+"){
 				cmd = factory.create_add_command();
 			}else if(token == "-"){
@@ -52,16 +52,10 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 	
 			}
 			if(temp->is_empty() || (cmd->precedence() > temp->top()->precedence())){
-				std::cout << "temp->is_empty(): " << temp->is_empty() << std::endl;
 				temp->push(cmd);
-                                std::cout << "temp->is_empty(): " << temp->is_empty() << std::endl;
-				//std::cout << "cmd->precedence(): " << cmd->precedence()<<std::endl;
-				//std::cout << "temp->top()->precedence(): " << temp->top()->precedence() << std::endl;
 			}else{
 				while((cmd->precedence() <= temp->top()->precedence()) && (!temp->is_empty())){
-					std::cout << "while loop" << std::endl;
 					Command * el = temp->pop();
-					postfix.set(i, el);	
 					postfix_temp->set(i, el);
 				}		
 				temp->push(cmd);
@@ -70,14 +64,19 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 		}else if(token == "(" || token == ")"){
 
 		}else{
-			//cmd = factory.create_number_command(token);
-			//append cmd to postfix
+			std::cout << "i: " << i << std::endl;
+			int operand = std::stoi(token);
+			num_cmd = factory.create_number_command(operand);
+			//std::cout << num_cmd << std::endl;
+			postfix_temp->set(i, num_cmd);	
 		}
 	}
 	postfix = *postfix_temp;
-	std::cout << "temp->top(): " << temp->top() << std::endl;
+	for(int i = 0; i < expr_length; i++){
+		Command * cmd_test = postfix_temp->get(expr_length);
+		//postfix.set(expr_length, cmd_test);		
+	}	
 	//std::cout << "postfix_temp->get(0): " << postfix_temp->get(0)<< std::endl;
-	//std::cout << "postfix.get(0): " << postfix.get(0) << std::endl;
 	return true;
 }
 void Calculator::run(){
@@ -86,13 +85,17 @@ void Calculator::run(){
 	Array<Command *> postfix;
 	Stack_Expr_Command_Factory factory;	
 	//Stack_Expr_Command_Factory factory(result);
-	infix_to_postfix(this->input, factory, postfix);	
-	//int posfix_el = 0;
-	/*while(postfix_el < postfix->max_size()){ //iterate through commands in postfix array
+	infix_to_postfix(this->input, factory, postfix);
+
+	std::cout << "run" << std::endl;	
+	int postfix_el = 0;
+	while(postfix_el < postfix.max_size()){ //iterate through commands in postfix array
 		postfix_el++;	
-	}*/
+		//std::cout << "postfix_el: " << postfix_el<< std::endl; 
+		std::cout << postfix.get(postfix_el)<< std::endl;	
+	}
 	//int res = result.top();	
-	//std::cout << postfix.get(0) << std::endl;
+	//std::cout << postfix.get(1) << std::endl;
 }
 void Calculator::set_expression(std::string input){
 	this->input = input; 	
