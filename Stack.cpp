@@ -29,7 +29,6 @@ void Stack <T>::push (T element)
 {
 	int test = ((top_ + 1) % Stack<T>::max_size_);
 	top_++;
-	std::cout << "Push - test: " << test << " top_: " << top_ << std::endl;
  	if(top_ < Stack<T>::max_size_){
 		Array_Base<T>::set(test, element); //top_
 		
@@ -38,6 +37,7 @@ void Stack <T>::push (T element)
 		top_--;
 		// throw std::overflow_error("Error - Stack is full");
  	}
+	std::cout << "top_ in push(): " << top_ << std::endl;
  }
 
 // pop
@@ -54,6 +54,7 @@ T Stack <T>::pop (void)
 		top_++;
 		throw std::underflow_error("Error - Stack is empty");
  	}
+	std::cout << "top_ in pop(): " << top_ << std::endl;
 	return Array_Base<T>::data_[test]; //top_
 }
 

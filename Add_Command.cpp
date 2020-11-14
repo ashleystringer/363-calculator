@@ -6,5 +6,5 @@ Add_Command::Add_Command(){
 
 }
 int Add_Command::precedence(){
-	return(0);
+	return(1);
 }

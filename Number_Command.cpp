@@ -2,5 +2,5 @@ Number_Command::Number_Command(int operand){
 
 }
 int Number_Command::precedence(){
-	return (5);
+	return (0);
 }
