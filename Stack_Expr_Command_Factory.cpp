@@ -10,11 +10,12 @@ Stack_Expr_Command_Factory::~Stack_Expr_Command_Factory(){
 Stack_Expr_Command_Factory::Stack_Expr_Command_Factory(){
 	
 }
+Stack_Expr_Command_Factory::Stack_Expr_Command_Factory(Stack<int> & s){
+
+}
 
 Add_Command * Stack_Expr_Command_Factory::create_add_command(void){
-	//Add_Command * add = new Add_Command(); //Error - "Cannot allocate an object of abstract type ‘Add_Command’"
 	Add_Command * add = new Add_Command();
-	//Add_Command * add;
 	return add;
 }
 

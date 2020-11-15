@@ -21,11 +21,7 @@ class Expr_Command_Factory
 		virtual Mult_Command * create_mult_command (void) = 0;
 		virtual Div_Command * create_div_command (void) = 0;
 		virtual Number_Command * create_number_command (int operand) = 0;
-		//Expr_Command_Factory(const Expr_Command_Factory &);
 	private:
-		//Expr_Command_Factory (const Expr_Command_Factory &);
-		//Expr_Command_Factory();
-		//const Expr_Command_Factory & operator = (const Expr_Command_Factory &);
 };
 
 #include "Expr_Command_Factory.cpp"

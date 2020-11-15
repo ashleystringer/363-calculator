@@ -48,7 +48,7 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 			}else if(token == "/"){
 				cmd = factory.create_div_command();
 			}else if(token == "%"){
-	
+				//cmd = factory.create_mod_command();	
 			}
 			if(temp->is_empty() || (cmd->precedence() > temp->top()->precedence())){
 				temp->push(cmd);
@@ -67,14 +67,20 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 			i++;
 			int operand = std::stoi(token);
 			num_cmd = factory.create_number_command(operand);
-			std::cout << "i: " << i << " postfix for numbers" << std::endl;
+			//std::cout << "i: " << i << " postfix for numbers" << std::endl;
 			postfix_temp->set(i, num_cmd);
 		}
+		//std::cout << "(i + 1): " << (i + 1) << " (expr_length - 1): "<< (expr_length - 1) << std::endl;
 		if((i + 1) == (expr_length - 1) && !temp->is_empty()){
-			i++;
+			/*i++;
 			std::cout << "i: "<< i << " testing if statement" << std::endl;
 			Command * el = temp->pop();
-			postfix_temp->set(i, el);
+			postfix_temp->set(i, el);*/
+			while(!temp->is_empty()){
+				i++;
+				Command * el = temp->pop();
+				postfix_temp->set(i, el);
+			}
 		}
 	}
 	postfix = *postfix_temp;
@@ -88,15 +94,15 @@ void Calculator::run(){
 	// ** Evaluation of commands from infix_to_postfix() is not yet complete **
 	Stack<int> result;		
 	Array<Command *> postfix;
-	Stack_Expr_Command_Factory factory;	
-	//Stack_Expr_Command_Factory factory(result);
+	//Stack_Expr_Command_Factory factory;	
+	Stack_Expr_Command_Factory factory(result);
 	infix_to_postfix(this->input, factory, postfix);
 
 	std::cout << "run" << std::endl;	
 	int postfix_el = 0;
 	while(postfix_el < postfix.max_size()){ //iterate through commands in postfix array
 		//std::cout << "postfix_el: " << postfix_el<< std::endl; 	
-		std::cout << "precedence(): " << postfix.get(postfix_el) << std::endl;	
+		std::cout << "precedence(): " << postfix.get(postfix_el)->precedence() << std::endl;	
 		postfix_el++;
 	}
 	//int res = result.top();	

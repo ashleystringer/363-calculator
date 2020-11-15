@@ -9,7 +9,8 @@
 #include "Binary_Op_Command.h"
 
 class Subtract_Command : public Binary_Op_Command{
-	//virtual int evaluate(int n1, int n2) const;
+	virtual bool execute(void);
+	virtual int evaluate(int n1, int n2) const;
 	virtual int precedence();
 };
 

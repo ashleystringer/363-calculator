@@ -15,8 +15,11 @@ class Stack_Expr_Command_Factory : public Expr_Command_Factory {
 		virtual Div_Command * create_div_command(void);
 		virtual Number_Command * create_number_command(int operand);
 		Stack_Expr_Command_Factory();
+		//Stack_Expr_Command_Factory(size_t test);
+		Stack_Expr_Command_Factory(Stack<int> &s);
 		//Stack_Expr_Command_Factory(const Expr_Command_Factory &) : Expr_Command_Factory();
 	private:
+		Stack<int> stack;
 		Stack_Expr_Command_Factory(const Stack_Expr_Command_Factory &);
 };
 
