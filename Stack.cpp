@@ -29,7 +29,7 @@ void Stack <T>::push (T element)
 {
 	//std::cout << "top_ " << top_ << std::endl;
 	int test = ((top_ + 1) % Stack<T>::max_size_);
-	std::cout << "top_ in push : " << top_ << std::endl;
+	//std::cout << "top_ in push : " << top_ << std::endl;
 	top_++;
  	if(top_ < Stack<T>::max_size_){
 		Array_Base<T>::set(test, element); //top_
@@ -49,9 +49,10 @@ T Stack <T>::pop (void)
 	int test = ((top_ + 1) % Stack<T>::max_size_);
 	//top_--;
 	if(!is_empty()){ //top_ >= 0
-		top_--;
-		std::cout << "data_[top_] " << Stack<T>::data_[top_] << std::endl;
+//		top_--;
+		std::cout << "pop - data_[top_] " << Stack<T>::data_[top_] << std::endl;
 		test = ((top_) % Stack<T>::max_size_);		
+		top_--;
 	}else{
 		top_++;
 		throw std::underflow_error("Error - Stack is empty");

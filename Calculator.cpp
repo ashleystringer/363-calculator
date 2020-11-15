@@ -32,10 +32,11 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 	Array<Command *> * postfix_temp = new Array<Command *>(expr_length);
 	Stack<Command *> * temp = new Stack<Command *>(expr_length);
 	int i = -1;
+	int stack_length = 0;
 	while(!input.eof()){
         // COMMENT This is an incomplete submisssion. You are not
         // handling all the required operators.
-        	//i++;
+        	
 		input >> token;
 		std::cout << token << std::endl;
 		if(token == "+" || token == "-" || token == "*" || token == "/" || token == "%"){
@@ -51,15 +52,24 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 				//cmd = factory.create_mod_command();	
 			}
 			if(temp->is_empty() || (cmd->precedence() > temp->top()->precedence())){
+				std::cout << "If statement" << std::endl;
+				std::cout << "temp->top: " << temp->top()<< std::endl;
 				temp->push(cmd);
+				std::cout << "temp->top: " << temp->top() << std::endl;
+				stack_length++;
+
 			}else{
 				while((!temp->is_empty()) && (cmd->precedence() <= temp->top()->precedence())){
 					i++;
 					Command * el = temp->pop();
+					stack_length--;
 					std::cout << "i: " << i << " postfix for while" << std::endl;
 					postfix_temp->set(i, el);
-				}		
+					//std::cout << "temp->top(): " << temp->top() << std::endl;	
+			}		
+			//	std::cout << "temp->top(): " << temp->top() << std::endl;
 				temp->push(cmd);
+				stack_length++;
 			}
 		}else if(token == "(" || token == ")"){
 			if(token == "("){
@@ -74,22 +84,22 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 			//std::cout << "i: " << i << " postfix for numbers" << std::endl;
 			postfix_temp->set(i, num_cmd);
 		}
-		//std::cout << "(i + 1): " << (i + 1) << " (expr_length - 1): "<< (expr_length - 1) << std::endl;
-		if((i + 1) == (expr_length - 1) && !temp->is_empty()){
-			/*i++;
-			std::cout << "i: "<< i << " testing if statement" << std::endl;
-			Command * el = temp->pop();
-			postfix_temp->set(i, el);*/
+		//std::cout << "(i + stack_length): " << (i + stack_length) << " (expr_length - 1): "<< (expr_length - 1) << std::endl;
+		if((i + stack_length) == (expr_length - 1) && !temp->is_empty()){
+			std::cout << "testing if statement" << std::endl;
 			while(!temp->is_empty()){
 				i++;
+				std::cout << "temp->top(): " << temp->top() << std::endl;
 				Command * el = temp->pop();
+				std::cout << "el: " << el << std::endl;
+				std::cout << "temp->top(): " << temp->top() << std::endl;
 				postfix_temp->set(i, el);
 			}
 		}
 	}
 	postfix = *postfix_temp;
 	for(int i = 0; i < expr_length; i++){
-		//std::cout << "postfix_temp: " << postfix_temp->get(expr_length) << std::endl;
+		std::cout << "postfix_temp: " << postfix_temp->get(i) << std::endl;
 		//std::cout << "postfix: " << postfix.get(expr_length) << std::endl;
 	}	
 	return true;
@@ -101,46 +111,46 @@ void Calculator::run(){
 	infix_to_postfix(this->input, factory, postfix);
 
 	std::cout << "run" << std::endl;	
+	std::cout << "" << std::endl;
+	std::cout << "" << std::endl;
 
-	std::cout << "max_size: " << postfix.max_size() << std::endl;
-	
 	size_t array_size = postfix.max_size();	
-
 	Stack<int> * result = new Stack<int>(array_size);
 
 
 	for(int i = 0; i < array_size; i++){
 		if(postfix.get(i)->precedence() == 0){
 			Number_Command * operand = static_cast<Number_Command*>(postfix.get(i));
-			//std::cout << "i: " << i << " Number_Command: " << operand->get_operand() << std::endl;
 			int number = operand->get_operand();
-			//std::cout << "number: " << number << std::endl;
 			result->push(number);
 		}else{
 			Binary_Op_Command * op = static_cast<Binary_Op_Command*>(postfix.get(i));
-		//	std::cout << "op->operator_type(): " << op->operator_type() << std::endl;
-		//	std::cout << "result->top(): " << result->top()<< std::endl;
 			char op_type = op->operator_type();
-			int num2 = result->top();
-			std::cout << "result->top(): " << result->top() << std::endl;
-			result->pop();
-			int num1 = result->top();
-			std::cout << "num1: " << num1 << std::endl;
+			int num1 = result->pop(); //result->top()
+			//result->pop();
+			int num2 = result->pop(); //result->top()
 			int res = 0;
+			std::cout << "num1: " << num1 << " num2: "<< num2 << std::endl;
 			if(op_type == '+'){
+				std::cout << "+" << std::endl; 
 				Add_Command * Add = static_cast<Add_Command*>(postfix.get(i));
-				res = Add->evaluate(num1, num2);
+				res = Add->evaluate(num2, num1);
 			}else if(op_type == '-'){
+				std::cout << "-" << std::endl;
 				Subtract_Command * Sub = static_cast<Subtract_Command*>(postfix.get(i));
-				res = Sub->evaluate(num1, num2);
+				res = Sub->evaluate(num2, num1);
 			}else if(op_type == '*'){
+				std::cout << "*" << std::endl;
 				Mult_Command * Mult = static_cast<Mult_Command*>(postfix.get(i));	
-				res = Mult->evaluate(num1, num2);
+				res = Mult->evaluate(num2, num1);
 			}else if(op_type == '/'){
+				std::cout << "/" << std::endl;
 				Div_Command * Div = static_cast<Div_Command*>(postfix.get(i));
-				res = Div->evaluate(num1, num2);	
+				res = Div->evaluate(num2, num1);	
 			}
+			std::cout << "result->top(): " << result->top() << std::endl;
 			result->push(res);	
+			std::cout << "result->top(): " << result->top() << std::endl;
 		}
 	}
 	
