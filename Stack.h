@@ -24,7 +24,7 @@ class Stack : public Array_Base<T>{
 		size_t size (void) const;
 		void clear (void);
 	private:
-		size_t top_;
+		int top_;
 		size_t testSize;
 };
 #include "Stack.inl"

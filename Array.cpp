@@ -48,14 +48,14 @@ Array <T>::Array (const Array & array) : Array_Base<T> (array)
 template <typename T>
 const Array <T> & Array <T>::operator = (const Array & rhs)
 {
-if(this != &rhs){
-Array_Base<T>::~Array_Base();
-Array_Base<T>::data_ = new T[rhs.max_size()];
-Array_Base<T>::max_size_ = rhs.max_size();
-Array_Base<T>::cur_size_ = rhs.size();
-Array_Base<T>::data_ = rhs.data_;
-}
-return *this;
+	if(this != &rhs){
+		Array_Base<T>::~Array_Base();
+		Array_Base<T>::data_ = new T[rhs.max_size()];
+		Array_Base<T>::max_size_ = rhs.max_size();
+		Array_Base<T>::cur_size_ = rhs.size();
+		Array_Base<T>::data_ = rhs.data_;
+	}
+	return *this;
 }
 
 

@@ -78,8 +78,9 @@ template <typename T>
 void Array_Base<T>::set (size_t index, T value)
 {
 	if(index <= (cur_size_ - 1)){
+		//std::cout << "Testing" << std::endl;
 		data_[index] = value;
-		std::cout << "cur_size_: " << cur_size_ << " data_[0]: "<< data_[0] << " data_[index]: " << data_[index] <<std::endl;
+		std::cout << "index: " << index << " data_[0]: "<< data_[0] << " data_[index]: " << data_[index] <<std::endl;
 	}else{
 		throw std::out_of_range("Out of range");
 	}

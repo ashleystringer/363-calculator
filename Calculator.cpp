@@ -30,13 +30,12 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 	Number_Command * num_cmd = 0;
 	Binary_Op_Command * cmd = 0;
 	Array<Command *> * postfix_temp = new Array<Command *>(expr_length);
-	//postfix = new Array<Command *>(expr_length);
 	Stack<Command *> * temp = new Stack<Command *>(expr_length);
 	int i = -1;
 	while(!input.eof()){
         // COMMENT This is an incomplete submisssion. You are not
         // handling all the required operators.
-        	i++;
+        	//i++;
 		input >> token;
 		std::cout << token << std::endl;
 		if(token == "+" || token == "-" || token == "*" || token == "/" || token == "%"){
@@ -54,27 +53,34 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 			if(temp->is_empty() || (cmd->precedence() > temp->top()->precedence())){
 				temp->push(cmd);
 			}else{
-				while((cmd->precedence() <= temp->top()->precedence()) && (!temp->is_empty())){
+				while((!temp->is_empty()) && (cmd->precedence() <= temp->top()->precedence())){
+					i++;
 					Command * el = temp->pop();
+					std::cout << "i: " << i << " postfix for while" << std::endl;
 					postfix_temp->set(i, el);
 				}		
 				temp->push(cmd);
 			}
-
 		}else if(token == "(" || token == ")"){
 
 		}else{
-			std::cout << "i: " << i << std::endl;
+			i++;
 			int operand = std::stoi(token);
 			num_cmd = factory.create_number_command(operand);
-			//std::cout << num_cmd << std::endl;
-			postfix_temp->set(i, num_cmd);	
+			std::cout << "i: " << i << " postfix for numbers" << std::endl;
+			postfix_temp->set(i, num_cmd);
+		}
+		if((i + 1) == (expr_length - 1) && !temp->is_empty()){
+			i++;
+			std::cout << "i: "<< i << " testing if statement" << std::endl;
+			Command * el = temp->pop();
+			postfix_temp->set(i, el);
 		}
 	}
 	postfix = *postfix_temp;
 	for(int i = 0; i < expr_length; i++){
-		Command * cmd_test = postfix_temp->get(expr_length);
-		//postfix.set(expr_length, cmd_test);		
+		//std::cout << "postfix_temp: " << postfix_temp->get(expr_length) << std::endl;
+		//std::cout << "postfix: " << postfix.get(expr_length) << std::endl;
 	}	
 	return true;
 }
@@ -89,12 +95,11 @@ void Calculator::run(){
 	std::cout << "run" << std::endl;	
 	int postfix_el = 0;
 	while(postfix_el < postfix.max_size()){ //iterate through commands in postfix array
-		postfix_el++;	
-		//std::cout << "postfix_el: " << postfix_el<< std::endl; 
-		std::cout << postfix.get(postfix_el)<< std::endl;	
+		//std::cout << "postfix_el: " << postfix_el<< std::endl; 	
+		std::cout << "precedence(): " << postfix.get(postfix_el) << std::endl;	
+		postfix_el++;
 	}
 	//int res = result.top();	
-	//std::cout << postfix.get(1) << std::endl;
 }
 void Calculator::set_expression(std::string input){
 	this->input = input; 	

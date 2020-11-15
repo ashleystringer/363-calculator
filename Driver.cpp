@@ -1,5 +1,6 @@
 #include "Calculator.h";
 #include "Stack.h";
+#include "Array.h";
 #include <iostream>;
 
 int main(int argc, char * argv []){
@@ -22,6 +23,7 @@ int main(int argc, char * argv []){
 			std::cout << "BYE" << std::endl;
 		}
 	}
+	
 
 	/*Stack<char> * st = new Stack<char>(4);
 	st->push('d');
