@@ -21,6 +21,8 @@ project (assignment3){
 		Mult_Command.cpp
 		Div_Command.cpp
 		Num_Command.cpp
+		Left_Parenth_Command.cpp
+		Right_Parenth_Command.cpp
 		Expr_Command_Factory.cpp
 		Stack_Expr_Command_Factory.cpp
 		Calculator.cpp

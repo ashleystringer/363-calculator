@@ -73,7 +73,7 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 			}
 		}else if(token == "(" || token == ")"){
 			if(token == "("){
-				
+				//push to stack	
 			}else{
 
 			}
@@ -130,7 +130,7 @@ void Calculator::run(){
 			//result->pop();
 			int num2 = result->pop(); //result->top()
 			int res = 0;
-			std::cout << "num1: " << num1 << " num2: "<< num2 << std::endl;
+			//std::cout << "num1: " << num1 << " num2: "<< num2 << std::endl;
 			if(op_type == '+'){
 				std::cout << "+" << std::endl; 
 				Add_Command * Add = static_cast<Add_Command*>(postfix.get(i));

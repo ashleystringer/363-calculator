@@ -14,6 +14,8 @@ class Stack_Expr_Command_Factory : public Expr_Command_Factory {
 		virtual Mult_Command * create_mult_command(void);
 		virtual Div_Command * create_div_command(void);
 		virtual Number_Command * create_number_command(int operand);
+		virtual Left_Parenth_Command * create_left_par_command();
+		virtual Right_Parenth_Command * create_right_par_command();
 		Stack_Expr_Command_Factory();
 		//Stack_Expr_Command_Factory(size_t test);
 		Stack_Expr_Command_Factory(Stack<int> &s);

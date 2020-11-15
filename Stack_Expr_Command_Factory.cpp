@@ -35,3 +35,11 @@ Number_Command * Stack_Expr_Command_Factory::create_number_command(int operand){
 	Number_Command * num = new Number_Command(operand);
 	return num;
 }
+Left_Parenth_Command * Stack_Expr_Command_Factory::create_left_par_command(){
+	Left_Parenth_Command * par;
+	return par;
+}
+Right_Parenth_Command * Stack_Expr_Command_Factory::create_right_par_command(){
+	Right_Parenth_Command * par;
+	return par;
+}
