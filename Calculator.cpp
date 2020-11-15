@@ -62,7 +62,11 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 				temp->push(cmd);
 			}
 		}else if(token == "(" || token == ")"){
+			if(token == "("){
+				
+			}else{
 
+			}
 		}else{
 			i++;
 			int operand = std::stoi(token);
@@ -108,30 +112,35 @@ void Calculator::run(){
 	for(int i = 0; i < array_size; i++){
 		if(postfix.get(i)->precedence() == 0){
 			Number_Command * operand = static_cast<Number_Command*>(postfix.get(i));
-			std::cout << "i: " << i << " Number_Command: " << operand->get_operand() << std::endl;
+			//std::cout << "i: " << i << " Number_Command: " << operand->get_operand() << std::endl;
 			int number = operand->get_operand();
 			//std::cout << "number: " << number << std::endl;
 			result->push(number);
 		}else{
 			Binary_Op_Command * op = static_cast<Binary_Op_Command*>(postfix.get(i));
 		//	std::cout << "op->operator_type(): " << op->operator_type() << std::endl;
+		//	std::cout << "result->top(): " << result->top()<< std::endl;
 			char op_type = op->operator_type();
-			int num1 = result->pop();
+			int num2 = result->top();
+			std::cout << "result->top(): " << result->top() << std::endl;
+			result->pop();
+			int num1 = result->top();
 			std::cout << "num1: " << num1 << std::endl;
+			int res = 0;
 			if(op_type == '+'){
-				std::cout << "...." << std::endl;
 				Add_Command * Add = static_cast<Add_Command*>(postfix.get(i));
-				int num2 = result->pop();
-				std::cout << "num2: " << num2<< std::endl;
-				int res = Add->evaluate(num1, num2);
-				result->push(res);
+				res = Add->evaluate(num1, num2);
 			}else if(op_type == '-'){
-
+				Subtract_Command * Sub = static_cast<Subtract_Command*>(postfix.get(i));
+				res = Sub->evaluate(num1, num2);
 			}else if(op_type == '*'){
-
+				Mult_Command * Mult = static_cast<Mult_Command*>(postfix.get(i));	
+				res = Mult->evaluate(num1, num2);
 			}else if(op_type == '/'){
-
+				Div_Command * Div = static_cast<Div_Command*>(postfix.get(i));
+				res = Div->evaluate(num1, num2);	
 			}
+			result->push(res);	
 		}
 	}
 	

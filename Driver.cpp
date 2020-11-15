@@ -1,24 +1,28 @@
 #include "Calculator.h";
 #include "Stack.h";
 #include "Array.h";
+#include <bits/stdc++.h>;
 #include <iostream>;
 
 int main(int argc, char * argv []){
 	//** Calculator is not yet fully functional **	
 	//Only the expression is being outputted rather than the result
 	
-	Calculator * test = new Calculator();
+	Calculator * calc = new Calculator();
 	char input[50];
-    
+	std::string command = "";   
+ 
     // COMMENT Your program should loop until QUIT is entered.
-    
-	while(input[0] != 'Q'){
+    // RESPONSE This requirement is satisfied with the comparison of the command string    
+	while(command.compare("QUIT") != 0){ //input[0] != 'Q'
 		std::cout << "Please type in a mathematical expression." << std::endl;
 		std::cin.getline(input, 50);
-		if(input[0] != 'Q'){
+		std::string input_str(input);
+		command = input_str;
+		if(command.compare("QUIT") != 0){ //input[0] != 'Q'
 			std::string expression(input);	
-			test->set_expression(expression);
-			test->run();
+			calc->set_expression(expression);
+			calc->run();
 		}else{
 			std::cout << "BYE" << std::endl;
 		}
