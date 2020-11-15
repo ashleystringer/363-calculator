@@ -10,3 +10,6 @@ int Mult_Command::evaluate(int n1, int n2) const{
 int Mult_Command::precedence(){
 	return(2);
 }
+char Mult_Command::operator_type(){
+	return '*';
+}

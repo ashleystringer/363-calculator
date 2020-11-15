@@ -50,9 +50,8 @@ T Stack <T>::pop (void)
 	//top_--;
 	if(!is_empty()){ //top_ >= 0
 		top_--;
-		std::cout << "pop - top_: " << top_ << std::endl;
+		std::cout << "data_[top_] " << Stack<T>::data_[top_] << std::endl;
 		test = ((top_) % Stack<T>::max_size_);		
-//		std::cout << "Pop - test: " << test << " top_: " << top_ << std::endl;
 	}else{
 		top_++;
 		throw std::underflow_error("Error - Stack is empty");

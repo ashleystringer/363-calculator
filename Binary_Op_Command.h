@@ -11,11 +11,9 @@
 
 class Binary_Op_Command : public Expr_Command{
 	public:
-		//bool execute(void);
 		virtual bool execute(void) = 0;
 		virtual int evaluate (int n1, int n2) const = 0; 
-	private:
-		//Stack<int> & s_;
+		virtual char operator_type() = 0;
 };
 #include "Binary_Op_Command.cpp"
 #endif

@@ -12,3 +12,6 @@ int Subtract_Command::evaluate(int n1, int n2) const{
 int Subtract_Command::precedence(){
 	return (1);
 }
+char Subtract_Command::operator_type(){
+	return '-';
+}

@@ -92,20 +92,50 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 }
 void Calculator::run(){
 	// ** Evaluation of commands from infix_to_postfix() is not yet complete **
-	Stack<int> result;		
 	Array<Command *> postfix;
-	//Stack_Expr_Command_Factory factory;	
-	Stack_Expr_Command_Factory factory(result);
+	Stack_Expr_Command_Factory factory;	
 	infix_to_postfix(this->input, factory, postfix);
 
 	std::cout << "run" << std::endl;	
-	int postfix_el = 0;
-	while(postfix_el < postfix.max_size()){ //iterate through commands in postfix array
-		//std::cout << "postfix_el: " << postfix_el<< std::endl; 	
-		std::cout << "precedence(): " << postfix.get(postfix_el)->precedence() << std::endl;	
-		postfix_el++;
+
+	std::cout << "max_size: " << postfix.max_size() << std::endl;
+	
+	size_t array_size = postfix.max_size();	
+
+	Stack<int> * result = new Stack<int>(array_size);
+
+
+	for(int i = 0; i < array_size; i++){
+		if(postfix.get(i)->precedence() == 0){
+			Number_Command * operand = static_cast<Number_Command*>(postfix.get(i));
+			std::cout << "i: " << i << " Number_Command: " << operand->get_operand() << std::endl;
+			int number = operand->get_operand();
+			//std::cout << "number: " << number << std::endl;
+			result->push(number);
+		}else{
+			Binary_Op_Command * op = static_cast<Binary_Op_Command*>(postfix.get(i));
+		//	std::cout << "op->operator_type(): " << op->operator_type() << std::endl;
+			char op_type = op->operator_type();
+			int num1 = result->pop();
+			std::cout << "num1: " << num1 << std::endl;
+			if(op_type == '+'){
+				std::cout << "...." << std::endl;
+				Add_Command * Add = static_cast<Add_Command*>(postfix.get(i));
+				int num2 = result->pop();
+				std::cout << "num2: " << num2<< std::endl;
+				int res = Add->evaluate(num1, num2);
+				result->push(res);
+			}else if(op_type == '-'){
+
+			}else if(op_type == '*'){
+
+			}else if(op_type == '/'){
+
+			}
+		}
 	}
-	//int res = result.top();	
+	
+	std::cout << "result->top(): " << result->top() << std::endl;	
 }
 void Calculator::set_expression(std::string input){
 	this->input = input; 	
