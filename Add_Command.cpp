@@ -5,9 +5,6 @@
 Add_Command::Add_Command(){
 
 }
-bool Add_Command::execute(void){
-	return true;
-}
 int Add_Command::evaluate(int n1, int n2) const{
 	return (n1 + n2);
 }

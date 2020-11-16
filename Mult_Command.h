@@ -7,7 +7,6 @@ class Mult_Command : public Binary_Op_Command{
 	public:
 		Mult_Command();
 		virtual int precedence();
-		virtual bool execute(void);
 		virtual int evaluate(int n1, int n2) const;
 		virtual char operator_type();
 };

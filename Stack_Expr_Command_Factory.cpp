@@ -36,10 +36,10 @@ Number_Command * Stack_Expr_Command_Factory::create_number_command(int operand){
 	return num;
 }
 Left_Parenth_Command * Stack_Expr_Command_Factory::create_left_par_command(){
-	Left_Parenth_Command * par;
+	Left_Parenth_Command * par = new Left_Parenth_Command();
 	return par;
 }
 Right_Parenth_Command * Stack_Expr_Command_Factory::create_right_par_command(){
-	Right_Parenth_Command * par;
+	Right_Parenth_Command * par = new Right_Parenth_Command();
 	return par;
 }

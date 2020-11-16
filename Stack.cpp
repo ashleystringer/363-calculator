@@ -27,38 +27,30 @@ Stack <T>::Stack (const Stack & stack) : Array_Base<T>(stack)
 template <typename T>
 void Stack <T>::push (T element)
 {
-	//std::cout << "top_ " << top_ << std::endl;
-	int test = ((top_ + 1) % Stack<T>::max_size_);
-	//std::cout << "top_ in push : " << top_ << std::endl;
+	int num = ((top_ + 1) % Stack<T>::max_size_);
 	top_++;
  	if(top_ < Stack<T>::max_size_){
-		Array_Base<T>::set(test, element); //top_
+		Array_Base<T>::set(num, element);
 		
 	 }else{	
-		std::cout << "Stack is full" << std::endl;
 		top_--;
-		// throw std::overflow_error("Error - Stack is full");
+		throw std::overflow_error("Error - Stack is full");
  	}
-//	std::cout << "top_ in push(): " << top_ << std::endl;
  }
 
 // pop
 template <typename T>
 T Stack <T>::pop (void)
 {
-	int test = ((top_ + 1) % Stack<T>::max_size_);
-	//top_--;
-	if(!is_empty()){ //top_ >= 0
-//		top_--;
-		std::cout << "pop - data_[top_] " << Stack<T>::data_[top_] << std::endl;
-		test = ((top_) % Stack<T>::max_size_);		
+	int num = ((top_ + 1) % Stack<T>::max_size_);
+	if(!is_empty()){ 
+		num = ((top_) % Stack<T>::max_size_);		
 		top_--;
 	}else{
 		top_++;
 		throw std::underflow_error("Error - Stack is empty");
  	}
-//	std::cout << "top_ in pop(): " << top_ << std::endl;
-	return Array_Base<T>::data_[test]; //top_
+	return Array_Base<T>::data_[num];
 }
 
 // operator =

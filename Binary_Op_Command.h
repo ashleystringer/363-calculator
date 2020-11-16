@@ -11,7 +11,6 @@
 
 class Binary_Op_Command : public Expr_Command{
 	public:
-		virtual bool execute(void) = 0;
 		virtual int evaluate (int n1, int n2) const = 0; 
 		virtual char operator_type() = 0;
 };
