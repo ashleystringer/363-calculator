@@ -24,6 +24,7 @@ project (assignment3){
 		Left_Parenth_Command.cpp
 		Right_Parenth_Command.cpp
 		Expr_Command_Factory.cpp
+		Flyweight_Expr_Command_Factory.cpp
 		Stack_Expr_Command_Factory.cpp
 		Calculator.cpp
 	}

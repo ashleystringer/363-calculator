@@ -58,7 +58,7 @@ T Stack <T>::pop (void)
  const Stack <T> & Stack <T>::operator = (const Stack & rhs)
  {
 	 if(this != &rhs){
-	Array_Base<T>::~Array_Base();
+	//Array_Base<T>::~Array_Base();
  	Array_Base<T>::data_ = new T[rhs.max_size()];
 	Array_Base<T>::max_size_ = rhs.max_size();
 	Array_Base<T>::cur_size_ = rhs.size();

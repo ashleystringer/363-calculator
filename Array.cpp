@@ -48,12 +48,20 @@ Array <T>::Array (const Array & array) : Array_Base<T> (array)
 template <typename T>
 const Array <T> & Array <T>::operator = (const Array & rhs)
 {
+	std::cout << "Assignment operator in Array class" << std::endl;
+
 	if(this != &rhs){
-		Array_Base<T>::~Array_Base();
+		//Array_Base<T>::~Array_Base();
+		delete[] Array_Base<T>::data_;
+
 		Array_Base<T>::data_ = new T[rhs.max_size()];
 		Array_Base<T>::max_size_ = rhs.max_size();
 		Array_Base<T>::cur_size_ = rhs.size();
-		Array_Base<T>::data_ = rhs.data_;
+		//Array_Base<T>::data_ = rhs.data_;
+		for(int i = 0; i < Array_Base<T>::max_size_; i++){
+			Array_Base<T>::data_[i] = rhs.data_[i];
+		}
+	//std::cout << "this != &rhs" << std::endl;
 	}
 	return *this;
 }
@@ -97,22 +105,41 @@ throw std::out_of_range("Out of range");
 template <typename T>
 void Array <T>::resize (size_t new_size)
 {
-if((new_size < Array_Base<T>::cur_size_) || (new_size > Array_Base<T>::cur_size_)){
-T * temp = new T[new_size];
-for(int i = 0; i < new_size; i++){
-temp[i] = Array_Base<T>::data_[i];
-}
-delete [] Array_Base<T>::data_;
-Array_Base<T>::data_ = new T[new_size];
-Array_Base<T>::cur_size_ = new_size;
-Array_Base<T>::max_size_ = new_size;
-for(int i = 0; i < Array_Base<T>::cur_size_; i++){
-Array_Base<T>::data_[i] = temp[i];
-}
-delete [] temp;
-}else if(new_size == Array_Base<T>::cur_size_){
-Array_Base<T>::cur_size_ = new_size;
-}
+	/*if((new_size < Array_Base<T>::cur_size_) || (new_size > Array_Base<T>::cur_size_)){
+		T * temp = new T[new_size];
+		for(int i = 0; i < new_size; i++){
+			temp[i] = Array_Base<T>::data_[i];
+	}
+		delete [] Array_Base<T>::data_;
+		Array_Base<T>::data_ = new T[new_size];
+		Array_Base<T>::cur_size_ = new_size;
+		Array_Base<T>::max_size_ = new_size;
+		for(int i = 0; i < Array_Base<T>::cur_size_; i++){
+			Array_Base<T>::data_[i] = temp[i];
+		}
+		delete [] temp;
+	}else if(new_size == Array_Base<T>::cur_size_){
+		Array_Base<T>::cur_size_ = new_size;
+	}*/
+	if(new_size < Array_Base<T>::cur_size_){
+	   Array_Base<T>::cur_size_ = new_size;
+   }else if(new_size > Array_Base<T>::cur_size_){
+	   if(Array_Base<T>::max_size_ == Array_Base<T>::cur_size_){
+		   T * temp = new T[new_size];
+		   for(int i = 0; i < Array_Base<T>::cur_size_; i++){
+			   temp[i] = Array_Base<T>::data_[i];
+		   }
+		   Array_Base<T>::data_ = new T[new_size]; //original - Array_Base<T>::data_ = new T(new_size);
+		   for(int i = 0; i < new_size; i++){
+			   Array_Base<T>::data_[i] = temp[i];
+		   }
+		   Array_Base<T>::cur_size_ = new_size;
+		   Array_Base<T>::max_size_ = new_size;
+		   delete [] temp;
+	   }else{
+		   Array_Base<T>::cur_size_ = new_size;
+	   }
+   }
 }
 
 //
@@ -153,19 +180,34 @@ return false;
 template <typename T>
 void Array<T>::shrink(){
 
-if(Array_Base<T>::cur_size_ < Array_Base<T>::max_size_){
-T *temp = new T[Array_Base<T>::cur_size_];
-for(int i = 0; i < Array_Base<T>::cur_size_; i++){
-temp[i] = Array_Base<T>::data_[i];
-}
+	/*if(Array_Base<T>::cur_size_ < Array_Base<T>::max_size_){
+		T *temp = new T[Array_Base<T>::cur_size_];
+		for(int i = 0; i < Array_Base<T>::cur_size_; i++){
+			temp[i] = Array_Base<T>::data_[i];
+		}
 
-delete [] Array_Base<T>::data_;
-Array_Base<T>::data_ = new T[Array_Base<T>::cur_size_];
-for(int i = 0; i < Array_Base<T>::cur_size_; i++){
-Array_Base<T>::data_[i] = temp[i];
-} 
-delete [] temp;
+		//delete [] Array_Base<T>::data_;
+		Array_Base<T>::data_ = new T[Array_Base<T>::cur_size_];
+		for(int i = 0; i < Array_Base<T>::cur_size_; i++){
+			Array_Base<T>::data_[i] = temp[i];
+		} 
+		delete [] temp;
 
-Array_Base<T>::max_size_ = Array_Base<T>::cur_size_; 
-}
+		Array_Base<T>::max_size_ = Array_Base<T>::cur_size_; 
+	}*/
+	if(Array_Base<T>::cur_size_ < Array_Base<T>::max_size_){
+		T *temp = new T[Array_Base<T>::cur_size_];
+		//char temp[cur_size_];
+		for(int i = 0; i < Array_Base<T>::cur_size_; i++){
+			temp[i] = Array_Base<T>::data_[i]; //data_ is mapped to a temporary variable so data_ can be deleted and re-instantiated
+		}
+		delete [] Array_Base<T>::data_;
+		Array_Base<T>::data_ = new T[Array_Base<T>::cur_size_];
+
+		for(int i = 0; i < Array_Base<T>::cur_size_; i++){
+			Array_Base<T>::data_[i] = temp[i];
+		}
+		delete [] temp;
+		Array_Base<T>::max_size_ = Array_Base<T>::cur_size_;
+	}
 }
