@@ -130,7 +130,8 @@ bool Calculator::infix_to_postfix(const std::string & infix, Expr_Command_Factor
 }
 void Calculator::run(){
 	Array<Command *> postfix;
-	Stack_Expr_Command_Factory factory;	
+	//Stack_Expr_Command_Factory factory;
+	Flyweight_Expr_Command_Factory factory;	
 	infix_to_postfix(this->input, factory, postfix);
 
 	std::cout << "" << std::endl;
@@ -138,7 +139,7 @@ void Calculator::run(){
 
 	size_t array_size = postfix.max_size();	
 	Stack<int> * result = new Stack<int>(array_size);
-	std::cout << "postfix.size(): " << postfix.size() << std::endl;
+	//std::cout << "postfix.size(): " << postfix.size() << std::endl;
 
 	/*for(int i = 0; i < array_size; i++){
 		std::cout << "i: " << i << std::endl;

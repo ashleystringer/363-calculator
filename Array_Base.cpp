@@ -106,7 +106,7 @@ if(start >= 0 && start <= cur_size_){
 	}
 	return -1;
 	}else{
-	throw std::out_of_range("Out of range");
+		throw std::out_of_range("Out of range");
 	}
 }
 

@@ -2,6 +2,9 @@
 //
 // I pledge that I have neither given nor receieved any help
 // on this assignment.
+
+#include <iostream>
+
 Add_Command::Add_Command(){
 
 }
@@ -13,4 +16,7 @@ char Add_Command::operator_type(){
 }
 int Add_Command::precedence(){
 	return(1);
+}
+Add_Command::~Add_Command(){
+	std::cout << "Delete" << std::endl;
 }

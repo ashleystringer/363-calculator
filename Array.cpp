@@ -179,22 +179,6 @@ return false;
 
 template <typename T>
 void Array<T>::shrink(){
-
-	/*if(Array_Base<T>::cur_size_ < Array_Base<T>::max_size_){
-		T *temp = new T[Array_Base<T>::cur_size_];
-		for(int i = 0; i < Array_Base<T>::cur_size_; i++){
-			temp[i] = Array_Base<T>::data_[i];
-		}
-
-		//delete [] Array_Base<T>::data_;
-		Array_Base<T>::data_ = new T[Array_Base<T>::cur_size_];
-		for(int i = 0; i < Array_Base<T>::cur_size_; i++){
-			Array_Base<T>::data_[i] = temp[i];
-		} 
-		delete [] temp;
-
-		Array_Base<T>::max_size_ = Array_Base<T>::cur_size_; 
-	}*/
 	if(Array_Base<T>::cur_size_ < Array_Base<T>::max_size_){
 		T *temp = new T[Array_Base<T>::cur_size_];
 		//char temp[cur_size_];
